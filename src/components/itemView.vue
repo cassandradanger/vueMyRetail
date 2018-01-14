@@ -16,28 +16,56 @@
         <button>ADD TO LIST</button>
         <button>SHARE</button>
     </div>
-        <h4 v-for="feature in features">{{feature}}</h4>
+    <h4 v-for="feature in features">{{feature}}</h4>
+    <div class="overallReviews">
+        <div class="starRating">*****</div>
+        <div class="viewReviews"> view all {{this.itemData.CatalogEntryView[0].CustomerReview[0].Reviews.length}} reviews </div>
+    </div>
+    <div class="reviews">
+        <div class="pro">
+            <h3 class="reviewTitle">Pro</h3>
+            <h5 class="reviewDescription">most helpful 4-5 star review</h5>
+            <h4>{{this.itemData.CatalogEntryView[0].CustomerReview[0].Pro[0].title}}</h4>
+            <h5>{{this.itemData.CatalogEntryView[0].CustomerReview[0].Pro[0].review}}</h5>
+        
+        </div>
+        <div class="con">
+            <h3 class="reviewTitle">Con</h3>
+            <h5 class="reviewDescription">most helpful 1-2 star review</h5>
+            <h4>{{this.itemData.CatalogEntryView[0].CustomerReview[0].Con[0].title}}</h4>
+            <h5>{{this.itemData.CatalogEntryView[0].CustomerReview[0].Con[0].review}}</h5>
+
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'itemView',
-  props: ['itemData'],
-  data(){
-      return {
-          features: [],
-      }
-  },
-  created(){
-      let items = this.itemData.CatalogEntryView[0].ItemDescription;
-      items.map((item) => {
-          item.features.map((feature) => {
-              this.features.push(feature);
-          })
-      });
-  }
-}
+    export default {
+        name: 'itemView',
+        props: ['itemData'],
+        data(){
+            return {
+                features: [],
+                highestRated: [],
+                lowestRated: [],
+            }
+        },
+        created(){
+            this.populateFeatures();
+            this.populateRatings();
+        },
+        methods:{
+            populateFeatures(){
+                let items = this.itemData.CatalogEntryView[0].ItemDescription;
+                items.map((item) => {
+                    item.features.map((feature) => {
+                        this.features.push(feature);
+                    })
+                });
+            },
+        }
+    }
 </script>
 
 <style lang="scss" scoped>
