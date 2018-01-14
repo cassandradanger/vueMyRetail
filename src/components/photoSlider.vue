@@ -3,7 +3,7 @@
         <img :src="mainImage" class="mainImage"/>
         <div class="gallery">
             <button class="back" @click="goBack"><</button>
-            <img :src="image" v-for="image in thumbnailArray.slice(0,3)" class="thumbnailImage" ></img>
+            <img :src="image" v-for="image in thumbnailArray" :class="mainImage === image ? 'selectedThumbnail' : 'thumbnailImage'" @click="selectImage(image)"></img>
             <button class="forward" @click="goForward">></button>
         </div>
     </div>
@@ -35,6 +35,8 @@ export default {
             this.currentIndex = this.thumbnailArray.length;
         }
         console.log(this.currentIndex);
+        this.mainImage = this.thumbnailArray[this.currentIndex];
+        console.log(this.mainImage);
     },
     goForward(){
         if(this.currentIndex < this.thumbnailArray.length){
@@ -43,7 +45,13 @@ export default {
             this.currentIndex = 0;
         }
         console.log(this.currentIndex);
-    }
+        this.mainImage = this.thumbnailArray[this.currentIndex];
+        console.log(this.mainImage);
+    },
+    selectImage(image){
+        this.mainImage = image;
+        console.log(image);
+    },
   }
 }
 </script>
@@ -68,5 +76,14 @@ export default {
     width: 75px;
     display: inline-block;
     margin: 10px;
+}
+
+.selectedThumbnail{
+    height: 75px;
+    width: 75px;
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
 }
 </style>

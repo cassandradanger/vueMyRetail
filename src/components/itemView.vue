@@ -63,14 +63,15 @@ import PhotoSlider from './photoSlider.vue';
         },
         created(){
             this.populateFeatures();
-            this.populateRatings();
         },
         methods:{
             populateFeatures(){
                 let items = this.itemData.CatalogEntryView[0].ItemDescription;
                 items.map((item) => {
                     item.features.map((feature) => {
-                        this.features.push(feature);
+                        let newFeature = feature.replace('<strong>', '')
+                        newFeature = newFeature.replace('</strong>', '');
+                        this.features.push(newFeature);
                     })
                 });
             },
