@@ -2,11 +2,7 @@
   <div id="itemView">
     <div class="leftSide">
         <h1 class="itemTitle">{{itemData.CatalogEntryView[0].title}}</h1>
-        <h2 class="price">{{itemData.CatalogEntryView[0].Offers[0].OfferPrice[0].formattedPriceValue}} <span class="priceQualifier">{{itemData.CatalogEntryView[0].Offers[0].OfferPrice[0].priceQualifier}}</span></h2>
-        <div class="promotions" v-for="promotion in itemData.CatalogEntryView[0].Promotions">
-            <h3 v-for="description in promotion.Description">{{description.shortDescription}}</h3>
-        </div>
-        <photo-slider></photo-slider>
+        <photo-slider :itemData="itemData"></photo-slider>
         <div class="overallReviews">
             <div class="starRating">*****</div>
             <div class="viewReviews"> view all {{this.itemData.CatalogEntryView[0].CustomerReview[0].Reviews.length}} reviews </div>
@@ -29,6 +25,10 @@
         </div>
     </div>
     <div class="rightSide">
+         <h2 class="price">{{itemData.CatalogEntryView[0].Offers[0].OfferPrice[0].formattedPriceValue}} <span class="priceQualifier">{{itemData.CatalogEntryView[0].Offers[0].OfferPrice[0].priceQualifier}}</span></h2>
+        <div class="promotions" v-for="promotion in itemData.CatalogEntryView[0].Promotions">
+            <h3 v-for="description in promotion.Description">{{description.shortDescription}}</h3>
+        </div>
         <div class="quantityCounter">{QUANTITY COUNTER GOES HERE}</div>
         <div class="buttons">
             <button class="pickUp">PICK UP IN STORE</button>
