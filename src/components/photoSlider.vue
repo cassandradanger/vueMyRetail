@@ -3,7 +3,11 @@
         <img :src="mainImage" class="mainImage"/>
         <div class="gallery">
             <button class="back" @click="goBack"><</button>
-            <img :src="image" v-for="image in thumbnailArray" :class="mainImage === image ? 'selectedThumbnail' : 'thumbnailImage'" @click="selectImage(image)"></img>
+            <!-- <img :src="image" v-for="image in thumbnailArray.slice(slice1, slice2)" :class="mainImage === image ? 'selectedThumbnail' : 'thumbnailImage'" @click="selectImage(image)"></img> -->
+            <img :src="thumbnailArray[image1]" :class="mainImage === thumbnailArray[image1] ? 'selectedThumbnail' : 'thumbnailImage'" @click="selectImage(thumbnailArray[image1])"></img>
+            <img :src="thumbnailArray[image2]" :class="mainImage === thumbnailArray[image2] ? 'selectedThumbnail' : 'thumbnailImage'" @click="selectImage(thumbnailArray[image2])"></img>
+            <img :src="thumbnailArray[image3]" :class="mainImage === thumbnailArray[image3] ? 'selectedThumbnail' : 'thumbnailImage'" @click="selectImage(thumbnailArray[image3])"></img>
+            
             <button class="forward" @click="goForward">></button>
         </div>
     </div>
@@ -19,37 +23,65 @@ export default {
         thumbnailArray: [],
         mainImage: this.itemData.CatalogEntryView[0].Images[0].PrimaryImage[0].image,
         currentIndex: 0,
+        image1: 0,
+        image2: 1,
+        image3: 2,
     }
   },
   created(){
+      this.thumbnailArray.push(this.itemData.CatalogEntryView[0].Images[0].PrimaryImage[0].image);
       this.itemData.CatalogEntryView[0].Images[0].AlternateImages.map((image) => {
           this.thumbnailArray.push(image.image);
-          console.log(this.thumbnailArray);
       })
   },
   methods: {
     goBack(){
+        this.image1--;
+        this.image2--;
+        this.image3--;
+
+        if(this.image1 < 0){
+            this.image1 = this.thumbnailArray.length -1;
+        }
+        if(this.image2 < 0){
+            this.image2 = this.thumbnailArray.length -1;
+        }
+        if(this.image3 < 0){
+            this.image3 = this.thumbnailArray.length -1;
+        }
+
         if(this.currentIndex > 0){
             this.currentIndex =  this.currentIndex - 1;
         } else {
-            this.currentIndex = this.thumbnailArray.length;
+            this.currentIndex = this.thumbnailArray.length - 1;
         }
-        console.log(this.currentIndex);
         this.mainImage = this.thumbnailArray[this.currentIndex];
-        console.log(this.mainImage);
     },
     goForward(){
-        if(this.currentIndex < this.thumbnailArray.length){
+        this.image1++;
+        this.image2++;
+        this.image3++;
+
+        if(this.image1 > this.thumbnailArray.length -1){
+            this.image1 = 0;
+        }
+        if(this.image2 > this.thumbnailArray.length -1){
+            this.image2 = 0;
+        }
+        if(this.image3 > this.thumbnailArray.length -1){
+            this.image3 = 0;
+        }
+
+        if(this.currentIndex < this.thumbnailArray.length -1){
             this.currentIndex =  this.currentIndex + 1;
         } else {
             this.currentIndex = 0;
         }
-        console.log(this.currentIndex);
         this.mainImage = this.thumbnailArray[this.currentIndex];
-        console.log(this.mainImage);
     },
     selectImage(image){
         this.mainImage = image;
+        this.currentIndex = this.thumbnailArray.indexOf(image);
         console.log(image);
     },
   }
