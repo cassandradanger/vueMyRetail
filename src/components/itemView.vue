@@ -4,10 +4,11 @@
         <h1 class="itemTitle">{{itemData.CatalogEntryView[0].title}}</h1>
         <photo-slider :itemData="itemData"></photo-slider>
         <div class="overallReviews">
-            <div class="starRating">*****</div>
-            <div class="viewReviews"> view all {{this.itemData.CatalogEntryView[0].CustomerReview[0].Reviews.length}} reviews </div>
+            <div class="starRating">***** overall</div>
+            <div class="viewReviews">view all {{this.itemData.CatalogEntryView[0].CustomerReview[0].Reviews.length}} reviews </div>    
         </div>
         <div class="reviews">
+            <hr class="reviewLine"/>
             <div class="pro">
                 <h3 class="reviewTitle">Pro</h3>
                 <h5 class="reviewDescription">most helpful 4-5 star review</h5>
@@ -42,7 +43,10 @@
             <button class="subButton">ADD TO LIST</button>
             <button class="subButton">SHARE</button>
         </div>
-        <h4 v-for="feature in features">{{feature}}</h4>
+        <h1 class="highlights">product highlights</h1>
+        <ul v-for="feature in features">
+            <li>{{feature}}</li>
+        </ul>
     </div>
   </div>
 </template>
@@ -86,20 +90,25 @@ import PhotoSlider from './photoSlider.vue';
         text-decoration: none;
         color: inherit;
     }
+    h5{
+        font-weight: 100;
+        margin-top: 0;
+    }
+    h4{
+        margin: 45px 0 5px;
+    }
     #itemView{
         margin: 200px 75px 75px 225px;
     }
     .leftSide{
         width: 500px;
         display: inline-block;
-        border: 1px solid black;
     }
     .rightSide{
         width: 500px;
         display: inline-block;
         position: absolute;
         margin-left: 20px;
-        border: 1px solid black;
     }
     .itemTitle{
         font-weight: 100;
@@ -113,8 +122,12 @@ import PhotoSlider from './photoSlider.vue';
         font-weight: 100;
         margin: 30px 0;
     }
-    .line{
+    .line, .reviewLine{
         color: grey;
+    }
+    .reviewLine{
+        transform: translateY(60px);
+        color: black;
     }
     .promotions h3{
         color: #cb0e17;
@@ -160,5 +173,41 @@ import PhotoSlider from './photoSlider.vue';
     }
     .buttons{
         margin: 30px 0;
+    }
+    .highlights{
+        font-weight: normal;
+    }
+    ul{
+        padding-left: 17px;
+    }
+    .starRating{
+        font-size: 12pt;
+        display: inline-block;
+    }
+    .viewReviews{
+        font-size: 12pt;
+        display: inline-block;
+        float: right;
+    }
+    .reviews{
+        padding: 0 10px 30px;
+        background-color: #eeeeee;
+    }
+    .pro, .con{
+        margin: 0;
+        width: 45%;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .con{
+        float: right;
+    }
+    .reviewTitle{
+        font-weight: 100;
+        margin: 0;
+    }
+    .reviewDescription{
+        margin: 0 0 5px;
+        font-weight: 100;
     }
 </style>

@@ -1,12 +1,12 @@
 <template>
     <div id="photo-slider">
         <img :src="mainImage" class="mainImage"/>
+        <div class="viewLarger">view larger</div>
         <div class="gallery">
             <button class="back" @click="goBack"><</button>
             <img :src="thumbnailArray[image1]" :class="mainImage === thumbnailArray[image1] ? 'selectedThumbnail' : 'thumbnailImage'" @click="selectImage(thumbnailArray[image1])"></img>
             <img :src="thumbnailArray[image2]" :class="mainImage === thumbnailArray[image2] ? 'selectedThumbnail' : 'thumbnailImage'" @click="selectImage(thumbnailArray[image2])"></img>
             <img :src="thumbnailArray[image3]" :class="mainImage === thumbnailArray[image3] ? 'selectedThumbnail' : 'thumbnailImage'" @click="selectImage(thumbnailArray[image3])"></img>
-            
             <button class="forward" @click="goForward">></button>
         </div>
     </div>
@@ -91,16 +91,23 @@ export default {
 .mainImage{
     display: block;
     margin: 10px auto;
-    border: 1px solid black;
+}
+.viewLarger{
+    font-size: 12pt;
+    font-weight: 100;
+    text-align: center;
+    margin-top: 40px;
 }
 .gallery{
     margin: 20px auto;
-    border: 1px solid black;
-    display: inline-block;
+    width: 400px;
     text-align: center;
 }
-.back .forward{
+.back, .forward{
     display: inline-block;
+    vertical-align: top;
+    margin-top: 10%;
+    border: transparent;
 }
 .thumbnailImage{
     height: 75px;
