@@ -3,11 +3,11 @@
         <img :src="mainImage" class="mainImage"/>
         <div class="viewLarger"><img src="../assets/magnify-plus-outline.svg" class="magnify"/>view larger</div>
         <div class="gallery">
-            <button class="back" @click="goBack"><</button>
+            <button class="back" @click="goBack"><img src="../assets/left-arrow.png"/></button>
             <img :src="thumbnailArray[image1]" :class="mainImage === thumbnailArray[image1] ? 'selectedThumbnail' : 'thumbnailImage'" @click="selectImage(thumbnailArray[image1])"></img>
             <img :src="thumbnailArray[image2]" :class="mainImage === thumbnailArray[image2] ? 'selectedThumbnail' : 'thumbnailImage'" @click="selectImage(thumbnailArray[image2])"></img>
             <img :src="thumbnailArray[image3]" :class="mainImage === thumbnailArray[image3] ? 'selectedThumbnail' : 'thumbnailImage'" @click="selectImage(thumbnailArray[image3])"></img>
-            <button class="forward" @click="goForward">></button>
+            <button class="forward" @click="goForward"><img src="../assets/right-arrow.png"/></button>
         </div>
     </div>
 </template>

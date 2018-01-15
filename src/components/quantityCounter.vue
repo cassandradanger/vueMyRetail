@@ -3,9 +3,9 @@
         <div class="counter">
             <h4>quantity:</h4>
             <div class="countBtn">
-                <img src="../assets/minus-circle.svg"/> 
-                <h3>1</h3> 
-                <img src="../assets/plus-circle.svg"/>
+                <img @click="decreaseCount" src="../assets/minus-circle.png"/> 
+                <h3>{{count}}</h3> 
+                <img @click="increaseCount" src="../assets/plus-circle.png"/>
             </div>
         </div>
     </div>
@@ -13,14 +13,27 @@
 
 <script>
 export default {
-  name: 'quantity-counter',
+    name: 'quantity-counter',
+    data(){
+        return {
+            count: 1,
+        }
+    },
+    methods:{
+        increaseCount(){
+            this.count++;
+        },
+        decreaseCount(){
+            this.count--;
+        }
+    },
 }
 </script>
 
 <style lang="scss" scoped>
     .counter{
         border: 1px solid black;
-        width: 240px;
+        width: 227px;
         height: 40px;
         padding: 0 5px;
     }
@@ -28,13 +41,14 @@ export default {
         float: right;
     }
     img{
-        height: 40px;
-        width: 40px;
+        height: 30px;
+        width: 30px;
         display: inline-block;
     }
     h3{
         display: inline-block;
         transform: translateY(-15px);
+        padding: 0 10px;
     }
     h4{
         display: inline-block;
