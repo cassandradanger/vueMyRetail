@@ -25,20 +25,22 @@
         </div>
     </div>
     <div class="rightSide">
-         <h2 class="price">{{itemData.CatalogEntryView[0].Offers[0].OfferPrice[0].formattedPriceValue}} <span class="priceQualifier">{{itemData.CatalogEntryView[0].Offers[0].OfferPrice[0].priceQualifier}}</span></h2>
+        <h2 class="price">{{itemData.CatalogEntryView[0].Offers[0].OfferPrice[0].formattedPriceValue}} <span class="priceQualifier">{{itemData.CatalogEntryView[0].Offers[0].OfferPrice[0].priceQualifier}}</span></h2>
+        <hr class="line"/>
         <div class="promotions" v-for="promotion in itemData.CatalogEntryView[0].Promotions">
             <h3 v-for="description in promotion.Description">{{description.shortDescription}}</h3>
         </div>
+        <hr class="line"/>
         <div class="quantityCounter">{QUANTITY COUNTER GOES HERE}</div>
         <div class="buttons">
             <button class="pickUp">PICK UP IN STORE</button>
             <button class="addToCart">ADD TO CART</button>
         </div>
-        <h3 class="returns">returns | <span class="returnPolicy">This item must be returned within 30 days of the ship date. See {return policy} for details. Prices, promotions, styles and availibility may vary by store and online.</span></h3>
+        <h3 class="returns">returns | <span class="returnPolicy">This item must be returned within 30 days of the ship date. See <a href="#"><strong>return policy</strong></a> for details. Prices, promotions, styles and availibility may vary by store and online.</span></h3>
         <div class="buttons">
-            <button>ADD TO REGISTRY</button>
-            <button>ADD TO LIST</button>
-            <button>SHARE</button>
+            <button class="subButton">ADD TO REGISTRY</button>
+            <button class="subButton">ADD TO LIST</button>
+            <button class="subButton">SHARE</button>
         </div>
         <h4 v-for="feature in features">{{feature}}</h4>
     </div>
@@ -80,17 +82,83 @@ import PhotoSlider from './photoSlider.vue';
 </script>
 
 <style lang="scss" scoped>
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
     #itemView{
-        margin: 200px 100px 100px 225px;
+        margin: 200px 75px 75px 225px;
     }
     .leftSide{
-        width: 49%;
-        float: left;
+        width: 500px;
+        display: inline-block;
         border: 1px solid black;
     }
     .rightSide{
-        width: 49%;
-        float: right;
+        width: 500px;
+        display: inline-block;
+        position: absolute;
+        margin-left: 20px;
         border: 1px solid black;
+    }
+    .itemTitle{
+        font-weight: 100;
+        text-align: center;
+        font-size: 26px;
+        width: 85%;
+        margin: 20px auto;
+    }
+    .priceQualifier{
+        font-size: 10pt;
+        font-weight: 100;
+        margin: 30px 0;
+    }
+    .line{
+        color: grey;
+    }
+    .promotions h3{
+        color: #cb0e17;
+        margin: 10px;
+        font-size: 12pt;
+    }
+    .returns{
+        font-weight: 100;
+        font-size: 14pt;
+    }
+    .returnPolicy{
+        font-weight: 100;
+        font-size: 8pt;
+        width: 85%;
+        float: right;
+    }
+    .subButton{
+        border-radius: 0;
+        border-color: transparent;
+        background-color: #eeeeee;
+        color: black;
+        width: 163px;
+        height: 25px;
+    }
+    .pickUp{
+        color: white;
+        font-size: 16pt;
+        font-weight: 100;
+        width: 240px;
+        height: 40px;
+        background-color: black;
+        border-radius: 0;
+    }
+    .addToCart{
+        color: white;
+        font-size: 16pt;
+        font-weight: 100;
+        width: 240px;
+        height: 40px;
+        background-color: #cb0e17;
+        border-radius: 0;
+        margin-left: 15px;
+    }
+    .buttons{
+        margin: 30px 0;
     }
 </style>
