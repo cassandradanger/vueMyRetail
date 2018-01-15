@@ -29,10 +29,10 @@
         <h2 class="price">{{itemData.CatalogEntryView[0].Offers[0].OfferPrice[0].formattedPriceValue}} <span class="priceQualifier">{{itemData.CatalogEntryView[0].Offers[0].OfferPrice[0].priceQualifier}}</span></h2>
         <hr class="line"/>
         <div class="promotions" v-for="promotion in itemData.CatalogEntryView[0].Promotions">
-            <h3 v-for="description in promotion.Description">{{description.shortDescription}}</h3>
+            <h3 v-for="description in promotion.Description"><img src="../assets/tag.svg" class="tag"/>{{description.shortDescription}}</h3>
         </div>
         <hr class="line"/>
-        <div class="quantityCounter">{QUANTITY COUNTER GOES HERE}</div>
+        <quantity-counter></quantity-counter>
         <div class="buttons">
             <button class="pickUp">PICK UP IN STORE</button>
             <button class="addToCart">ADD TO CART</button>
@@ -53,12 +53,14 @@
 
 <script>
 import PhotoSlider from './photoSlider.vue';
+import QuantityCounter from './quantityCounter.vue';
 
     export default {
         name: 'itemView',
         props: ['itemData'],
         components:{
             PhotoSlider,
+            QuantityCounter,
         },
         data(){
             return {
@@ -134,6 +136,10 @@ import PhotoSlider from './photoSlider.vue';
         margin: 10px;
         font-size: 12pt;
     }
+    .tag{
+        margin-right: 10px;
+        vertical-align: bottom;
+    }
     .returns{
         font-weight: 100;
         font-size: 14pt;
@@ -203,7 +209,7 @@ import PhotoSlider from './photoSlider.vue';
         float: right;
     }
     .reviewTitle{
-        font-weight: 100;
+        font-weight: normal;
         margin: 0;
     }
     .reviewDescription{

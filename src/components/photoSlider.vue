@@ -1,7 +1,7 @@
 <template>
     <div id="photo-slider">
         <img :src="mainImage" class="mainImage"/>
-        <div class="viewLarger">view larger</div>
+        <div class="viewLarger"><img src="../assets/magnify-plus-outline.svg" class="magnify"/>view larger</div>
         <div class="gallery">
             <button class="back" @click="goBack"><</button>
             <img :src="thumbnailArray[image1]" :class="mainImage === thumbnailArray[image1] ? 'selectedThumbnail' : 'thumbnailImage'" @click="selectImage(thumbnailArray[image1])"></img>
@@ -97,6 +97,12 @@ export default {
     font-weight: 100;
     text-align: center;
     margin-top: 40px;
+}
+.magnify{
+    height: 40px;
+    width: 40px;
+    transform: translateY(15px);
+    fill: grey;
 }
 .gallery{
     margin: 20px auto;
