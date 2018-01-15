@@ -47,7 +47,7 @@ export default {
     }
     h3{
         display: inline-block;
-        transform: translateY(-15px);
+        transform: translateY(-10px);
         padding: 0 10px;
     }
     h4{

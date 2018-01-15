@@ -22,4 +22,9 @@ export default {
         padding: 150px 20px;
         z-index: 0;
     }
+@media only screen and (max-width: 500px) {
+    #sidebar{
+        display: none;
+    }
+}
 </style>

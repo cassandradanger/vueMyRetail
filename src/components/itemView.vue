@@ -202,14 +202,17 @@ import QuantityCounter from './quantityCounter.vue';
     .starRating{
         font-size: 12pt;
         display: inline-block;
+        font-weight: bold;
     }
     .stars{
         margin: 30px 0 0;
+        font-weight: bold;
     }
     .viewReviews{
         font-size: 12pt;
         display: inline-block;
         float: right;
+        font-weight: bold;
     }
     .reviews{
         padding: 0 10px 30px;
@@ -232,4 +235,12 @@ import QuantityCounter from './quantityCounter.vue';
         margin: 0 0 5px;
         font-weight: 100;
     }
+    @media only screen and (max-width: 500px) {
+     #itemView{
+        margin: 200px 0 0;
+    }
+    .rightSide{
+        width: 100%;
+    }
+}
 </style>
